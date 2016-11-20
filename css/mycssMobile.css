@@ -1,0 +1,138 @@
+@CHARSET "ISO-8859-1";
+#tabs h3 {	font-size: 80px;		}
+#tabs p,#tabs ul,#tabs ul li {	font-size: 50px;		}
+.ui-widget {
+	font-size: 70px;
+	}
+.ui-widget-content {
+	background: none repeat scroll 0 0 transparent;
+	}
+.ui-widget img {
+	width:300px;
+	}
+#titre {
+	font-size: 70px;
+	position: relative;
+	color: #ff9733;
+	text-align: center;
+	width: 100%;
+	clear: both;
+	padding: 0px;
+	font-weight: bold;
+	background-color: black;
+	height:150px;
+	vertical-align:middle;
+	padding-top:50px;
+	float: none;}
+* {
+	margin: 0px;
+	padding: 0px;
+}
+footer {
+	font-size: 30px;
+	width: 100%;
+	text-align: center;
+}
+
+h2 {
+	position: relative;
+	color: #ff9733;
+	text-align: center;
+	font-size: 80px;
+	text-shadow: none;
+	padding-top: 70px;
+	padding-bottom: 70px;
+}
+
+#description,#contacts {
+	font-size: 60px;
+	color: black;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+#description p, #description li {
+	padding-bottom: 60px;
+	}
+
+/* passer tous les éléments de largeur fixe en largeur automatique */
+body,element1,element2 {
+	width: auto;
+	margin: auto;
+	padding: auto;
+	-webkit-text-size-adjust: none;
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+}
+
+/* fixer une largeur maximale  de 100 % aux éléments potentiellement problématiques */
+img,table,td,blockquote,code,pre,textarea,input,iframe,object,embed,video
+	{
+	max-width: 100%;
+}
+/* conserver le ratio des images et empêcher les débordements de boîtes dûs aux border ou padding */
+img {
+	height: auto;
+	width: 80%;
+	border:5px solid gray;
+	max-width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+#page p {
+	margin-bottom: 10px;
+	margin-top: 10px;
+	text-indent: 40px;
+	text-align: justify;
+}
+
+.mini a {
+	height: auto;
+	width: auto;
+	max-width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;	
+	}
+
+#menu,#menu li {
+	width: 100%;
+}
+
+#mycarousel li {
+	display: list-item;
+	list-style: none;
+	}
+
+#menu ul li a {
+	font-size: 100px;
+	width: 100%;
+}
+
+#menu ul li a:HOVER {
+	display: block;
+	width: 100%;
+}
+
+#mycarousel, .mini, .mini a, .mini a img { width: 100%; }
+
+/* Passer à une seule colonne (à appliquer aux éléments multi-colonnes) */
+element1,element2 {
+	float: none !important;
+	width: auto !important
+}
+
+/* masquer les éléments superflus */
+.hide_mobile {
+	display: none !important;
+}
+
+/* Un message personnalisé */
+body:before {
+	content: "Version mobile du site";
+	display: block;
+	color: black;
+	font-size: 20px;
+	text-align: center;
+	font-style: italic;
+	text-align: center;
+}

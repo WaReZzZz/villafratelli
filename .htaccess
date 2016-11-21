@@ -1,21 +1,21 @@
-#RewriteCond %{HTTP_HOST} ^www\.villafratelli\.com$
-#RewriteRule ^/?$ "http\:\/\/villafratelli\.com\/" [R=301,L]
-#
-#RewriteCond %{HTTP_USER_AGENT} libwww-perl.* 
-#RewriteRule .* ? [F,L]
-#
-#<IfModule mod_deflate.c>
-# <IfModule mod_setenvif.c>
-# <IfModule mod_headers.c>
-#          SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
-#   RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
-# </IfModule> 
-#</IfModule>
-# </IfModule>
-#
-## Mise en cache pendant 45 jours
-#<FilesMatch ".(flv|gif|jpg|jpeg|png|ico|swf|pdf|doc)$">
-#Header set Cache-Control "max-age=3888000"
-#</FilesMatch>
-#
-#Header add Cache-Control "max-age=1"
+RewriteCond %{HTTP_HOST} ^www\.villafratelli\.com$
+RewriteRule ^/?$ "http\:\/\/villafratelli\.com\/" [R=301,L]
+
+RewriteCond %{HTTP_USER_AGENT} libwww-perl.* 
+RewriteRule .* ? [F,L]
+
+<IfModule mod_deflate.c>
+ <IfModule mod_setenvif.c>
+ <IfModule mod_headers.c>
+          SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
+   RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+ </IfModule> 
+</IfModule>
+ </IfModule>
+
+# Mise en cache pendant 45 jours
+<FilesMatch ".(flv|gif|jpg|jpeg|png|ico|swf|pdf|doc)$">
+Header set Cache-Control "max-age=3888000"
+</FilesMatch>
+
+Header add Cache-Control "max-age=1"

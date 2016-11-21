@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php 
+=======
+<?php
+>>>>>>> 5d6614ca236466d6b93802bd814096c1ac75f08b
 include_once 'include/functions.php';
 if (detection_mobile() == true) {
     header('Location: http://mobile.villafratelli.com');
@@ -167,4 +171,8 @@ if (detection_mobile() == true) {
     <script
           src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <?php } ?>-->
+<<<<<<< HEAD
             </div>
+=======
+            </div>
+>>>>>>> 5d6614ca236466d6b93802bd814096c1ac75f08b

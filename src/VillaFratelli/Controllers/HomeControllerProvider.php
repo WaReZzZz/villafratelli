@@ -70,10 +70,8 @@ class HomeControllerProvider implements ControllerProviderInterface
 
             if ($images) {
                 foreach ($images as $value) {
-                    $imageFile = $value['dossier'] . $value['nom'];
-
+                    $imageFile = WEB_DIRECTORY . '/' . $value['dossier'] . $value['nom'];
                     if (is_file($imageFile)) {
-
                         $response = new BinaryFileResponse($imageFile);
                         $response->trustXSendfileTypeHeader();
                         $response->setContentDisposition(

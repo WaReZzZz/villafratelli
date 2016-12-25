@@ -3,6 +3,8 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../src/VillaFratelli/Config/config.php';
 
+define('WEB_DIRECTORY', __DIR__);
+
 use Silex\Application\SwiftmailerTrait;
 
 $oMobileDetect = new \Mobile_Detect();

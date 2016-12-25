@@ -64,8 +64,8 @@ $app->register(new Silex\Provider\HttpCacheServiceProvider(), array(
 ));
 
 $app->error(function (\Exception $e, Symfony\Component\HttpFoundation\Request $request, $code) use($app) {
-    $message = \Swift_Message::newInstance('Error on Textile.sexy', $request . 'Exception : ' . $e)
-            ->setFrom('contact@textile.sexy')
+    $message = \Swift_Message::newInstance('Error on VillaFratelli', $request . 'Exception : ' . $e)
+            ->setFrom('contact@villafratelli.com')
             ->setTo(array('yaniv.afriat@gmail.com'));
     $app['mailer']->send($message);
     echo $e;

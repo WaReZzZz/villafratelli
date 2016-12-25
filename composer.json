@@ -1,6 +1,10 @@
 {
     "require": {
-        "silex/silex": "~2.0"
+        "silex/silex": "~2.0",
+        "twig/twig": "dev-master",
+        "swiftmailer/swiftmailer": "5.*",
+        "doctrine/dbal": "^2.5",
+        "mobiledetect/mobiledetectlib": "^2.8"
     },
     "autoload": {
         "psr-4": {

@@ -1,0 +1,43 @@
+{% extends "layout.twig"%}
+
+{% block title %}{% endblock %}
+
+{% block css %}{% endblock %}
+{% block carousel %}{% endblock %}
+
+{% block body %}
+    <div id="page">
+        {% if is_mobile() == false %}
+            <div id="chambres" style="float:left">
+                <h2>Les images des chambres</h2>
+                <ul id="mycarousel" class="jcarousel-skin-ie7">
+                    {% for image in aImages %}
+                        <li class="mini"><a title="{{image['description']}}"
+                                            style="width: 200px; height: 150px;" rel="example_group"
+                                            href="/images/normal/{{ page }}/{{ image['nom'] }}">
+                                <img alt="Cliquez ici" title="Cliquez ici"
+                                     src="/images/mini/{{ page }}/{{ image['nom'] }}" />
+                            </a><br /> <a href="download.php?id={{ image['idImages'] }}">Télécharger</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <div id="chambres">
+                <h2>Les images des chambres</h2>
+                {% for image in aImages %}
+                    <div style="width: 100%; text-align: center;">
+                        <a
+                            href="/images/normal/{{ page }}/{{ image['nom'] }}">
+                            <img alt="Cliquez ici" title="Cliquez ici" style="border: 40px solid gray; margin: 40px;"
+                                 src="/images/normal/{{ page }}/{{ image['nom'] }}" /></a>
+                        <br />
+                    </div>
+                    <br /> <br /> <br /> <br />
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block js %}{% endblock %}

@@ -5,6 +5,12 @@ require __DIR__ . '/../src/VillaFratelli/Config/config.php';
 
 use Silex\Application\SwiftmailerTrait;
 
+$oMobileDetect = new \Mobile_Detect();
+if ($oMobileDetect->isMobile() === true) {
+    header('Location: http://mobile.villafratelli.com');
+    exit;
+}
+
 $app = new Silex\Application();
 
 if (null !== getenv('APPLICATION_ENV') && getenv('APPLICATION_ENV') === 'development') {
@@ -66,5 +72,6 @@ $app->error(function (\Exception $e, Symfony\Component\HttpFoundation\Request $r
 });
 $app->mount('/', new \VillaFratelli\Controllers\HomeControllerProvider());
 $app->mount('/ajax', new \VillaFratelli\Controllers\AjaxControllerProvider());
+//$app->mount('/mobile', new \VillaFratelli\Controllers\MobileControllerProvider());
 
 $app->run();

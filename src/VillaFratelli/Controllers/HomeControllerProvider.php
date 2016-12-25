@@ -5,6 +5,8 @@ namespace VillaFratelli\Controllers;
 use Silex\Application;
 use Silex\Api\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class HomeControllerProvider implements ControllerProviderInterface
 {
@@ -72,15 +74,17 @@ class HomeControllerProvider implements ControllerProviderInterface
 
                     if (is_file($imageFile)) {
 
-                        header('Content-Length: ' . filesize($imageFile));
-                        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-                        header('Content-disposition: attachment; filename="' . $value['nom']);
-                        header('Content-Type: image/jpeg');
+                        $response = new BinaryFileResponse($imageFile);
+                        $response->trustXSendfileTypeHeader();
+                        $response->setContentDisposition(
+                                ResponseHeaderBag::DISPOSITION_ATTACHMENT, $value['nom'], iconv('UTF-8', 'ASCII//TRANSLIT', $value['nom'])
+                        );
 
-                        readfile($imageFile);
+                        return $response;
                     }
                 }
             }
+            return 'Error';
         })->value('idimage', '1');
 
         //mardi mercredi samedi lundi jeudi vendredi

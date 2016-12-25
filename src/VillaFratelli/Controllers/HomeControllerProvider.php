@@ -63,6 +63,26 @@ class HomeControllerProvider implements ControllerProviderInterface
             return $app['twig']->render('contacts.twig', ['page' => 'contacts']);
         })->bind('contacts');
 
+        $controllers->get('/download/{idimage}', function($idimage) use ($app) {
+            $images = $this->getImages($app, array("idImages=$idimage"));
+
+            if ($images) {
+                foreach ($images as $value) {
+                    $imageFile = $value['dossier'] . $value['nom'];
+
+                    if (is_file($imageFile)) {
+
+                        header('Content-Length: ' . filesize($imageFile));
+                        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+                        header('Content-disposition: attachment; filename="' . $value['nom']);
+                        header('Content-Type: image/jpeg');
+
+                        readfile($imageFile);
+                    }
+                }
+            }
+        })->value('idimage', '1');
+
         //mardi mercredi samedi lundi jeudi vendredi
         return $controllers;
     }

@@ -8,10 +8,10 @@ define('WEB_DIRECTORY', __DIR__);
 use Silex\Application\SwiftmailerTrait;
 
 $oMobileDetect = new \Mobile_Detect();
-if ($oMobileDetect->isMobile() === true) {
+/*if ($oMobileDetect->isMobile() === true) {
     header('Location: http://mobile.villafratelli.com');
     exit;
-}
+}*/
 
 $app = new Silex\Application();
 
@@ -72,8 +72,16 @@ $app->error(function (\Exception $e, Symfony\Component\HttpFoundation\Request $r
     $app['mailer']->send($message);
     echo $e;
 });
-$app->mount('/', new \VillaFratelli\Controllers\HomeControllerProvider());
-$app->mount('/ajax', new \VillaFratelli\Controllers\AjaxControllerProvider());
+
+
+if ($oMobileDetect->isMobile() === true) {
+    $app->mount('/', new \VillaFratelli\Controllers\MobileControllerProvider());
+    $app->mount('/ajax', new \VillaFratelli\Controllers\AjaxControllerProvider());
+} else {
+    $app->mount('/', new \VillaFratelli\Controllers\HomeControllerProvider());
+    $app->mount('/ajax', new \VillaFratelli\Controllers\AjaxControllerProvider());
+}
+
 //$app->mount('/mobile', new \VillaFratelli\Controllers\MobileControllerProvider());
 
 $app->run();

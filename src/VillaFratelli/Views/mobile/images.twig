@@ -1,0 +1,31 @@
+{% extends "mobile/layout.twig"%}
+
+{% block css %}{% endblock %}
+{% block carousel %}{% endblock %}
+
+{% block body %}
+    <div id="{{ page }}" class="gallery-page">
+        <h3>By {{ page }}</h3>
+        <ul id="Gallery">
+            {% for image in aImages %}
+                <li>
+                    <a rel="external" href="/images/normal/{{ page }}/{{ image['nom'] }}">
+                        <img alt="Cliquez ici" title="Cliquez ici" src="/images/mini/{{ page }}/{{ image['nom'] }}" /></a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+
+{% block js %}
+
+    <script type="text/javascript">
+        (function (window, PhotoSwipe) {
+            document.addEventListener('DOMContentLoaded', function () {
+                var
+                        options = {},
+                        instance = PhotoSwipe.attach(window.document.querySelectorAll('#Gallery a'), options);
+            }, false);
+        }(window, window.Code.PhotoSwipe));
+    </script>
+{% endblock %}

@@ -13,13 +13,9 @@ if (class_exists(Dotenv::class)) {
     }
 }
 
-$client = new Raven_Client(getenv('SENTRY_DSN'));
-$error_handler = new Raven_ErrorHandler($client);
-$error_handler->registerExceptionHandler();
-$error_handler->registerErrorHandler();
-$error_handler->registerShutdownFunction();
+\Sentry\init(['dsn' => getenv('SENTRY_DSN')]);
 
-define('WEB_DIRECTORY', __DIR__);
+const WEB_DIRECTORY = __DIR__;
 
 $oMobileDetect = new \Mobile_Detect();
 
@@ -63,7 +59,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 $app['twig'] = $app->extend("twig", function (\Twig_Environment $twig, Silex\Application $app) {
     //$twig->addExtension(new Twig_Extensions_Extension_Text());
-    $twig->addExtension(new \VillaFratelli\Services\MyTwigExtensions());
+    $twig->addExtension(new \App\Services\MyTwigExtensions());
 
     return $twig;
 });
@@ -81,11 +77,11 @@ $app['db.options'] = array(
     'charset' => 'utf8');
 
 if ($oMobileDetect->isMobile() === true) {
-    $app->mount('/', new \VillaFratelli\Controllers\MobileControllerProvider());
-    $app->mount('/ajax', new \VillaFratelli\Controllers\AjaxControllerProvider());
+    $app->mount('/', new \MobileControllerProvider());
+    $app->mount('/ajax', new \AjaxControllerProvider());
 } else {
-    $app->mount('/', new \VillaFratelli\Controllers\HomeControllerProvider());
-    $app->mount('/ajax', new \VillaFratelli\Controllers\AjaxControllerProvider());
+    $app->mount('/', new \HomeControllerProvider());
+    $app->mount('/ajax', new \AjaxControllerProvider());
 }
 
 $app->run();
